@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="text-center">
+        <h1>Sign up</h1>
+    </div>
+
+    <div class="row">    
     <div class="col-md-6 col-md-offset-3">
         
         {!! Form::open(['route' => 'signup.post']) !!}
@@ -15,7 +20,7 @@
             </div>
             
             <div class="form-group">
-                {!! Form::label('password', 'Passwprd') !!}
+                {!! Form::label('password', 'Password') !!}
                 {!! Form::password('password', ['class' => 'form-control']) !!}
             </div>
             
@@ -28,5 +33,6 @@
             
         {!! Form::close() !!}
         
+    </div>
     </div>
 @endsection
