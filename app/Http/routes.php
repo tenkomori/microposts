@@ -35,7 +35,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');
         Route::get('followings', 'UsersController@followings')->name('users.followings');
         Route::get('followers', 'UsersController@followers')->name('users.followers');
+        Route::post('favorited_micropost', 'UserFavoriteController@store')->name('favorite.favorited_micropost');
+        Route::delete('unfavorited_micropost', 'UserFavoriteController@destroy')->name('favorite.unfavorited_micropost');
+        Route::get('favorites_micropost', 'UsersController@favorites_micropost')->name('favorites.favorites_micropost');
     });
     
     Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
+
+    //Route::group(['prefix' => 'favorites/{id}'], function () { 
+        //Route::post('favorited_micropost', 'UserFavoriteController@store')->name('favorite.favorited_micropost');
+        //Route::delete('unfavorited_micropost', 'UserFavoriteController@destroy')->name('favorite.unfavorited_micropost');
+        //Route::get('favorites_micropost', 'UsersController@favorites_micropost')->name('favorites.favorites_micropost');
+        //Route::get('favorites_user', 'UsersController@favorites_user')->name('favorites.favorites_user');
+    //});
 });

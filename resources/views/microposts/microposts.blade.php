@@ -1,3 +1,4 @@
+<div class="tab-content">
 <ul class="media-list">
 @foreach ($microposts as $micropost)
     <?php $user = $micropost->user; ?>
@@ -19,8 +20,12 @@
                     {!! Form::close() !!}
                 @endif
             </div>
+            <div>
+                @include('user_favorite.favorite_button', ['microposts' => $microposts])
+            </div>
         </div>
     </li>
 @endforeach
 </ul>
+</div>
 {!! $microposts->render() !!}

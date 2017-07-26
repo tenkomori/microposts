@@ -1,4 +1,5 @@
 @if (count($users) > 0)
+<div class="tab-content">
 <ul class="media-list">
 @foreach ($users as $user)
     <li class="media">
@@ -16,5 +17,6 @@
     </li>
 @endforeach
 </ul>
+</div>
 {!! $users->render() !!}
 @endif

@@ -6,6 +6,7 @@
         <div class="row">
             <aside class="col-md-4">
                 {!! Form::open(['route' => 'microposts.store']) !!}
+                    {{ csrf_field() }}
                     <div class="form-group">
                         {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '5']) !!}
                     </div>

@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Micropost;
 
-class MicropostsController extends Controller
+class UserFavoriteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,17 +35,10 @@ class MicropostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $this->validate($request, [
-            'content' => 'required|max:255',
-        ]);
-        
-        $request->user()->microposts()->create([
-            'content' => $request->content,
-        ]);
-        
-        return redirect('/');
+        \Auth::user()->favorited_micropost($id);
+        return redirect()->back();
     }
 
     /**
@@ -91,28 +83,7 @@ class MicropostsController extends Controller
      */
     public function destroy($id)
     {
-        $micropost = Micropost::find($id);
-        
-        if (\Auth::user()->id === $micropost->user_id) {
-            $micropost->delete();
-        }
-        
+        \Auth::user()->unfavorited_micropost($id);
         return redirect()->back();
     }
-    
-    public function favorites_user($id)
-    {
-        $micropost = Micropost::find($id);
-        $favorites_user = $micropost->favorites_user()->paginate(10);
-        
-        $data = [
-            'micropost' => $micropost,
-            'favorites_user' => $favorites_user,
-        ];
-        
-        $data += $this->counts($micropost);
-        
-        return view('favorites.favorites_micropost', $data);
-    }
-    
 }

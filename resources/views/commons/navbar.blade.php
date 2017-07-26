@@ -20,6 +20,7 @@
                                 <li><a href="#">My profile</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li>{!! link_to_route('logout.get', 'Logout') !!}</li>
+                                <li role="separator" class="divider"></li>
                             </ul>
                         </li>
                     @else
